@@ -12,7 +12,20 @@ export default class App extends Component {
       <div className="wrapper">
         <div className="menu">
           {data.map((value) => {
-            return <h1>{value.category}</h1>
+            return (
+              <div className="category">
+                <h1>{value.category}</h1>;
+                <div className="submenu">
+                  {value.lists.map((item) => (
+                    <div className="item">
+                      <img src={item.src} alt="" />
+                      <h2>{item.title}</h2>
+                      <h3>{item.price} so'm</h3>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
           })}
         </div>
         <div className="order">Order</div>
