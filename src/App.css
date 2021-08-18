@@ -13,7 +13,7 @@ h5 {
 }
 
 .menu {
-  flex: 5;
+  flex: 4;
   border: 1px solid blue;
   margin: 20px;
 }
@@ -30,13 +30,15 @@ h1 {
 
 .submenu {
   display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 25px;
 }
 
 .item {
   width: 300px;
   height: 350px;
   box-shadow: 0 0 10px black;
-  margin: 20px;
+  /* margin: 20px; */
   border-radius: 8px;
   /* padding: 10px; */
   text-align: center;

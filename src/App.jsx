@@ -7,18 +7,26 @@ export default class App extends Component {
     super(props)
     this.state = {
       selected: [],
+      total: 0,
     }
   }
   render() {
     const onSelect = (value) => {
-      const selected = [...this.state.selected, value]
+      const selected = [
+        ...this.state.selected,
+        { ...value, selectedId: this.state.selected.length },
+      ]
       this.setState({ selected })
       selected.forEach((value) =>
         this.setState({ total: this.state.total + value.price }),
       )
     }
     const onDelete = (id) => {
-      const selected = this.state.selected.filter((value) => value.id !== id)
+      const selected = this.state.selected.filter((value) => {
+        value.selectedId === id &&
+          this.setState({ total: this.state.total - value.price })
+        return value.selectedId !== id
+      })
       this.setState({ selected })
     }
     return (
@@ -50,7 +58,12 @@ export default class App extends Component {
             <div className="order">
               <h1>
                 {value.title} - {value.price} so'm
-                <button onClick={() => onDelete(value.id)}>delete</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => onDelete(value.id)}
+                >
+                  delete
+                </button>
               </h1>
             </div>
           ))}
